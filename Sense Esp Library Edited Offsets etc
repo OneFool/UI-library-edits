@@ -39,7 +39,7 @@ local max3 = Vector3.zero.Max;
 
 -- constants
 local HEALTH_BAR_OFFSET = Vector2.new(5, 0);
-local HEALTH_TEXT_OFFSET = Vector2.new(3, 0);
+local HEALTH_TEXT_OFFSET = Vector2.new(0, 4);
 local HEALTH_BAR_OUTLINE_OFFSET = Vector2.new(0, 1);
 local NAME_OFFSET = Vector2.new(0, 2);
 local DISTANCE_OFFSET = Vector2.new(0, 2);
