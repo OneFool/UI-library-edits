@@ -334,7 +334,7 @@ function EspObject:Render()
 		rank.Transparency = options.nameColor[2];
 		rank.Outline = options.nameOutline;
 		rank.OutlineColor = parseColor(self, options.nameOutlineColor, true);
-		rank.Position = (corners.topLeft + corners.topRight)*0.8 - Vector2.yAxis*rank.TextBounds.Y - RANK_OFFSET;
+		rank.Position = (corners.topLeft + corners.topRight)*1 - Vector2.yAxis*rank.TextBounds.Y - RANK_OFFSET;
 	end
 
 	visible.distance.Visible = enabled and onScreen and self.distance and options.distance;
