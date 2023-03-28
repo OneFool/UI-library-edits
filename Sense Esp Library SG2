@@ -47,7 +47,6 @@ local NAME_OFFSET = Vector2.new(0, 2);
 local DISTANCE_OFFSET = Vector2.new(0, 2);
 local RANK_OFFSET = Vector2.new(0, 10);
 local CLAN_OFFSET = Vector2.new(0, 13);
-local CHAKRA_OFFSET = Vector2.new(0, 16);
 local VERTICES = {
 	Vector3.new(-1, -1, -1),
 	Vector3.new(-1, 1, -1),
@@ -173,7 +172,6 @@ function EspObject:Construct()
 			name = self:_create("Text", { Text = self.player.Name, Center = true, Visible = false }),
             rank = self:_create("Text", { Text = self.player:WaitForChild("leaderstats").Rank.Value, Center = true, Visible = false }),
             clan = self:_create("Text", { Text = Workspace.LivingThings:WaitForChild(self.player.Name).Clan.Value, Center = true, Visible = false }),
-            chakra = self:_create("Text", { Text = tonumber(self.player:WaitForChild("Chakra").Value), Center = true, Visible = false }),
 			distance = self:_create("Text", { Center = true, Visible = false }),
 			weapon = self:_create("Text", { Center = true, Visible = false }),
 		},
@@ -353,18 +351,6 @@ function EspObject:Render()
 		clan.Outline = options.nameOutline;
 		clan.OutlineColor = parseColor(self, options.nameOutlineColor, true);
 		clan.Position = (corners.topLeft + corners.topRight)*0.5 - Vector2.yAxis*clan.TextBounds.Y - CLAN_OFFSET;
-	end
-
-    visible.chakra.Visible = enabled and onScreen and options.chakra;
-	if visible.chakra.Visible then
-		local chakra = visible.chakra;
-		chakra.Size = interface.sharedSettings.textSize;
-		chakra.Font = interface.sharedSettings.textFont;
-		chakra.Color = parseColor(self, options.nameColor[1]);
-		chakra.Transparency = options.nameColor[2];
-		chakra.Outline = options.nameOutline;
-		chakra.OutlineColor = parseColor(self, options.nameOutlineColor, true);
-		chakra.Position = (corners.topLeft + corners.topRight)*0.5 - Vector2.yAxis*chakra.TextBounds.Y - CHAKRA_OFFSET;
 	end
 
 	visible.distance.Visible = enabled and onScreen and self.distance and options.distance;
@@ -612,7 +598,6 @@ local EspInterface = {
 			nameOutline = true,
 			nameOutlineColor = Color3.new(),
             rank = false,
-            chakra = false,
             clan = false,
 			weapon = false,
 			weaponColor = { Color3.new(1,1,1), 1 },
@@ -662,7 +647,6 @@ local EspInterface = {
 			nameOutline = true,
 			nameOutlineColor = Color3.new(),
             rank = false,
-            chakra = false,
             clan = false,
 			weapon = false,
 			weaponColor = { Color3.new(1,1,1), 1 },
