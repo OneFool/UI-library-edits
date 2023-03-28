@@ -43,7 +43,7 @@ local HEALTH_TEXT_OFFSET = Vector2.new(3, 0);
 local HEALTH_BAR_OUTLINE_OFFSET = Vector2.new(0, 1);
 local NAME_OFFSET = Vector2.new(0, 2);
 local DISTANCE_OFFSET = Vector2.new(0, 2);
-local RANK_OFFSET = Vector2.new(3, 7);
+local RANK_OFFSET = Vector2.new(0, 2);
 local VERTICES = {
 	Vector3.new(-1, -1, -1),
 	Vector3.new(-1, 1, -1),
@@ -334,7 +334,7 @@ function EspObject:Render()
 		rank.Transparency = options.nameColor[2];
 		rank.Outline = options.nameOutline;
 		rank.OutlineColor = parseColor(self, options.nameOutlineColor, true);
-		rank.Position = (corners.topLeft + corners.topRight)*0.5 - Vector2.yAxis*rank.TextBounds.Y - RANK_OFFSET;
+		rank.Position = (corners.topLeft + corners.topRight)*0.8 - Vector2.yAxis*rank.TextBounds.Y - RANK_OFFSET;
 	end
 
 	visible.distance.Visible = enabled and onScreen and self.distance and options.distance;
