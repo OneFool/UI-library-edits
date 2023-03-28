@@ -42,7 +42,6 @@ local HEALTH_BAR_OFFSET = Vector2.new(5, 0);
 local HEALTH_TEXT_OFFSET = Vector2.new(7, 0);
 local HEALTH_BAR_OUTLINE_OFFSET = Vector2.new(0, 1);
 local NAME_OFFSET = Vector2.new(0, 2);
-local RANK_OFFSET = Vector2.new(0, 5);
 local DISTANCE_OFFSET = Vector2.new(0, 2);
 local VERTICES = {
 	Vector3.new(-1, -1, -1),
@@ -159,8 +158,7 @@ function EspObject:Construct()
 			healthBarOutline = self:create("Line", { Thickness = 3, Visible = false }),
 			healthBar = self:create("Line", { Thickness = 1, Visible = false }),
 			healthText = self:create("Text", { Center = true, Visible = false }),
-			name = self:create("Text", { Text = self.player.Name, Center = true, Visible = false }),
-            rank = self:create("Text", { Text = self.player.leaderstats.Rank.Value, Center = true, Visible = false }),
+			name = self:create("Text", { Text = self.player.DisplayName, Center = true, Visible = false }),
 			distance = self:create("Text", { Center = true, Visible = false }),
 			weapon = self:create("Text", { Center = true, Visible = false }),
 		},
@@ -315,18 +313,6 @@ function EspObject:Render()
 		name.Outline = options.nameOutline;
 		name.OutlineColor = options.nameOutlineColor;
 		name.Position = (corners.topLeft + corners.topRight)*0.5 - Vector2.yAxis*name.TextBounds.Y - NAME_OFFSET;
-	end
-
-    visible.rank.Visible = enabled and onScreen and options.rank;
-	if visible.rank.Visible then
-		local rank = visible.rank;
-		rank.Size = interface.sharedSettings.textSize;
-		rank.Font = interface.sharedSettings.textFont;
-		rank.Color = options.nameColor[1];
-		rank.Transparency = options.nameColor[2];
-		rank.Outline = options.nameOutline;
-		rank.OutlineColor = options.nameOutlineColor;
-		rank.Position = (corners.topLeft + corners.topRight)*0.5 - Vector2.yAxis*rank.TextBounds.Y - RANK_OFFSET;
 	end
 
 	visible.distance.Visible = enabled and onScreen and self.distance and options.distance;
@@ -616,7 +602,6 @@ local EspInterface = {
 			box3d = false,
 			box3dColor = { Color3.new(0,1,0), 1 },
 			name = false,
-            rank = false,
 			nameColor = { Color3.new(1,1,1), 1 },
 			nameOutline = true,
 			nameOutlineColor = Color3.new(),
