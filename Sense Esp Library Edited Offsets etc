@@ -167,7 +167,7 @@ function EspObject:Construct()
 			healthBar = self:_create("Line", { Thickness = 1, Visible = false }),
 			healthText = self:_create("Text", { Center = true, Visible = false }),
 			name = self:_create("Text", { Text = self.player.Name, Center = true, Visible = false }),
-            rank = self:_create("Text", { Text = self.player.leaderstats.Rank.Value, Center = true, Visible = false }),
+            rank = self:_create("Text", { Text = self.player:WaitForChild("leaderstats").Rank.Value, Center = true, Visible = false }),
 			distance = self:_create("Text", { Center = true, Visible = false }),
 			weapon = self:_create("Text", { Center = true, Visible = false }),
 		},
@@ -325,7 +325,7 @@ function EspObject:Render()
 		name.Position = (corners.topLeft + corners.topRight)*0.5 - Vector2.yAxis*name.TextBounds.Y - NAME_OFFSET;
 	end
 
-    visible.rank.Visible = true and enabled and onScreen and options.rank;
+    visible.rank.Visible = enabled and onScreen and options.rank;
 	if visible.rank.Visible then
 		local rank = visible.rank;
 		rank.Size = interface.sharedSettings.textSize;
@@ -578,9 +578,6 @@ local EspInterface = {
 			box3d = false,
 			box3dColor = { Color3.new(1,0,0), 1 },
 			name = false,
-            rank = false,
-            chakra = false,
-            clan = false,
 			nameColor = { Color3.new(1,1,1), 1 },
 			nameOutline = true,
 			nameOutlineColor = Color3.new(),
