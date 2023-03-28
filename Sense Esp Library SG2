@@ -46,7 +46,7 @@ local HEALTH_BAR_OUTLINE_OFFSET = Vector2.new(0, 1);
 local NAME_OFFSET = Vector2.new(0, 2);
 local DISTANCE_OFFSET = Vector2.new(0, 2);
 local RANK_OFFSET = Vector2.new(0, 10);
-local CLAN_OFFSET = Vector2.new(0, 13);
+local CLAN_OFFSET = Vector2.new(0, 16);
 local VERTICES = {
 	Vector3.new(-1, -1, -1),
 	Vector3.new(-1, 1, -1),
