@@ -1,3 +1,5 @@
+-- all credits go to the creator(s) of the sirius sense esp library all I did was edit it for a specific game :)
+
 -- services
 local runService = game:GetService("RunService");
 local players = game:GetService("Players");
@@ -44,6 +46,8 @@ local HEALTH_BAR_OUTLINE_OFFSET = Vector2.new(0, 1);
 local NAME_OFFSET = Vector2.new(0, 2);
 local DISTANCE_OFFSET = Vector2.new(0, 2);
 local RANK_OFFSET = Vector2.new(0, 10);
+local CLAN_OFFSET = Vector2.new(0, 13);
+local CHAKRA_OFFSET = Vector2.new(0, 16);
 local VERTICES = {
 	Vector3.new(-1, -1, -1),
 	Vector3.new(-1, 1, -1),
@@ -168,6 +172,8 @@ function EspObject:Construct()
 			healthText = self:_create("Text", { Center = true, Visible = false }),
 			name = self:_create("Text", { Text = self.player.Name, Center = true, Visible = false }),
             rank = self:_create("Text", { Text = self.player:WaitForChild("leaderstats").Rank.Value, Center = true, Visible = false }),
+            clan = self:_create("Text", { Text = Workspace.LivingThings:WaitForChild(self.player.Name).Clan.Value, Center = true, Visible = false }),
+            chakra = self:_create("Text", { Text = self.player:WaitForChild("Chakra").Value, Center = true, Visible = false }),
 			distance = self:_create("Text", { Center = true, Visible = false }),
 			weapon = self:_create("Text", { Center = true, Visible = false }),
 		},
@@ -335,6 +341,30 @@ function EspObject:Render()
 		rank.Outline = options.nameOutline;
 		rank.OutlineColor = parseColor(self, options.nameOutlineColor, true);
 		rank.Position = (corners.topLeft + corners.topRight)*0.5 - Vector2.yAxis*rank.TextBounds.Y - RANK_OFFSET;
+	end
+
+    visible.clan.Visible = enabled and onScreen and options.clan;
+	if visible.clan.Visible then
+		local clan = visible.clan;
+		clan.Size = interface.sharedSettings.textSize;
+		clan.Font = interface.sharedSettings.textFont;
+		clan.Color = parseColor(self, options.nameColor[1]);
+		clan.Transparency = options.nameColor[2];
+		clan.Outline = options.nameOutline;
+		clan.OutlineColor = parseColor(self, options.nameOutlineColor, true);
+		clan.Position = (corners.topLeft + corners.topRight)*0.5 - Vector2.yAxis*clan.TextBounds.Y - CLAN_OFFSET;
+	end
+
+    visible.chakra.Visible = enabled and onScreen and options.chakra;
+	if visible.chakra.Visible then
+		local chakra = visible.chakra;
+		chakra.Size = interface.sharedSettings.textSize;
+		chakra.Font = interface.sharedSettings.textFont;
+		chakra.Color = parseColor(self, options.nameColor[1]);
+		chakra.Transparency = options.nameColor[2];
+		chakra.Outline = options.nameOutline;
+		chakra.OutlineColor = parseColor(self, options.nameOutlineColor, true);
+		chakra.Position = (corners.topLeft + corners.topRight)*0.5 - Vector2.yAxis*chakra.TextBounds.Y - CHAKRA_OFFSET;
 	end
 
 	visible.distance.Visible = enabled and onScreen and self.distance and options.distance;
