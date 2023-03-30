@@ -47,6 +47,7 @@ local NAME_OFFSET = Vector2.new(0, 2);
 local DISTANCE_OFFSET = Vector2.new(0, 2);
 local RANK_OFFSET = Vector2.new(0, 10);
 local CLAN_OFFSET = Vector2.new(0, 21);
+local RATING_OFFSET = Vector2.new(0, 31);
 local VERTICES = {
 	Vector3.new(-1, -1, -1),
 	Vector3.new(-1, 1, -1),
@@ -171,6 +172,7 @@ function EspObject:Construct()
 			healthText = self:_create("Text", { Center = true, Visible = false }),
 			name = self:_create("Text", { Text = self.player.Name, Center = true, Visible = false }),
             rank = self:_create("Text", { Text = self.player:WaitForChild("leaderstats").Rank.Value, Center = true, Visible = false }),
+            rating = self:_create("Text", { Text = self.player:WaitForChild("leaderstats").Rating.Value, Center = true, Visible = false }),
             clan = self:_create("Text", { Text = Workspace.LivingThings:WaitForChild(self.player.Name).Clan.Value, Center = true, Visible = false }),
 			distance = self:_create("Text", { Center = true, Visible = false }),
 			weapon = self:_create("Text", { Center = true, Visible = false }),
@@ -339,6 +341,18 @@ function EspObject:Render()
 		rank.Outline = options.nameOutline;
 		rank.OutlineColor = parseColor(self, options.nameOutlineColor, true);
 		rank.Position = (corners.topLeft + corners.topRight)*0.5 - Vector2.yAxis*rank.TextBounds.Y - RANK_OFFSET;
+	end
+
+    visible.rating.Visible = enabled and onScreen and options.rating;
+	if visible.rating.Visible then
+		local rating = visible.rating;
+		rating.Size = interface.sharedSettings.textSize;
+		rating.Font = interface.sharedSettings.textFont;
+		rating.Color = parseColor(self, options.nameColor[1]);
+		rating.Transparency = options.nameColor[2];
+		rating.Outline = options.nameOutline;
+		rating.OutlineColor = parseColor(self, options.nameOutlineColor, true);
+		rating.Position = (corners.topLeft + corners.topRight)*0.5 - Vector2.yAxis*rating.TextBounds.Y - RATING_OFFSET;
 	end
 
     visible.clan.Visible = enabled and onScreen and options.clan;
@@ -598,6 +612,7 @@ local EspInterface = {
 			nameOutline = true,
 			nameOutlineColor = Color3.new(),
             rank = false,
+            rating = false,
             clan = false,
 			weapon = false,
 			weaponColor = { Color3.new(1,1,1), 1 },
@@ -647,6 +662,7 @@ local EspInterface = {
 			nameOutline = true,
 			nameOutlineColor = Color3.new(),
             rank = false,
+            rating = false,
             clan = false,
 			weapon = false,
 			weaponColor = { Color3.new(1,1,1), 1 },
