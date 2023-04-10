@@ -171,7 +171,7 @@ function EspObject:Construct()
 			healthBar = self:_create("Line", { Thickness = 1, Visible = false }),
 			healthText = self:_create("Text", { Center = true, Visible = false }),
 			name = self:_create("Text", { Text = self.player.Name, Center = true, Visible = false }),
-            rank = self:_create("Text", { Text = self.player:WaitForChild("leaderstats").Rank.Value, Center = true, Visible = false }),
+            rank = self:_create("Text", { Text = self.player.leaderstats.Rank.Value, Center = true, Visible = false }),
             rating = self:_create("Text", { Text = self.player:WaitForChild("leaderstats").Rating.Value, Center = true, Visible = false }),
             clan = self:_create("Text", { Text = Workspace.LivingThings:WaitForChild(self.player.Name).Clan.Value, Center = true, Visible = false }),
 			distance = self:_create("Text", { Center = true, Visible = false }),
